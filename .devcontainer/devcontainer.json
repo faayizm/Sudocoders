@@ -1,1 +1,21 @@
-
+{
+  "name": "sudocoders",
+  "dockerFile": "Dockerfile",
+  "settings": {
+    "terminal.integrated.shell.linux": "/bin/bash"
+  },
+  "extensions": [
+    "ms-vscode.cpptools",
+    "ms-vscode.vscode-js-profile-flame",
+    "waderyan.gitblame",
+    "visualstudioexptteam.vscodeintellicode",
+    "esbenp.prettier-vscode",
+    "aaron-bond.better-comments",
+    "eamodio.gitlens",
+    "coenraads.bracket-pair-colorizer-2",
+    "formulahendry.code-runner"
+  ],
+  "forwardPorts": [22],  // Expose SSH for interactive tools
+  "postCreateCommand": "npx git-user-change your-name your-email",  // Optional: Customize Git user details
+  "remoteUser": "vscode"
+}
