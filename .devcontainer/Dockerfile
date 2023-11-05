@@ -1,27 +1,36 @@
-# Use the official Visual Studio Code development container image
-FROM mcr.microsoft.com/vscode/devcontainers/universal:linux
+FROM mcr.microsoft.com/vscode/devcontainers/base:ubuntu
 
-# Set non-interactive mode for package installation
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Install necessary tools and dependencies
-RUN apt-get update && apt-get install -y \
-    build-essential \
-    gdb \
-    valgrind \
-    wireshark \
-    && rm -rf /var/lib/apt/lists/*
+RUN sudo apt-get update
+RUN sudo apt-get install --no-install-recommends -y \
+  ca-certificates \
+  sudo \
+  gdb-multiarch \
+  gcc-riscv64-unknown-elf \
+  binutils-common \
+  make \
+  curl \
+  git-core \
+  wget \
+  nano \
+  ssh \
+  tree \
+  less \
+  build-essential \
+  python3 \
+  python3-dev \
+  python3-pip \
+  binutils \
+  make \
+  binutils-riscv64-linux-gnu \
+  qemu-system-riscv32 \
+  zsh \
+  xxd \
+  strace \
+  man
 
-# [Optional] Add any custom tools or configurations you need here.
+RUN yes | unminimize
 
-# Create a non-root user to use in the Codespace
-RUN useradd -m vscode
-
-# Switch to the non-root user
-USER vscode
-
-# Set the working directory
-WORKDIR /workspace
-
-# Default shell for Codespace
-ENV SHELL /bin/bash
+# terminal colors with xterm
+ENV TERM xterm
